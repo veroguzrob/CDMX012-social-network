@@ -30,7 +30,7 @@ h3 {
 h5 {
     font-size: 15px;
     color: #777777;
-    margin: 50px 0 0 0;
+    margin: 30px 0 0 0;
 }
 .input {
     width: 250px;
@@ -69,7 +69,7 @@ h5 {
     color: white;
     font-weight: bold;
     background-color: #EC9A13;
-    margin: 10px;
+    margin: 20px;
     border: 1px solid #EC9A13;
     box-shadow: 0px 4px 4px 0px #00000080;
 }
