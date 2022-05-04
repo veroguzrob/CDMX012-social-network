@@ -1,6 +1,8 @@
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from '../main.js';
 
+import { singInUser } from '../lib/auth.js';
+
 export const home = () => {
   const homeDiv = document.createElement('div');
   homeDiv.classList = ('container');
@@ -8,21 +10,31 @@ export const home = () => {
   const titleApp = document.createElement('h1');
   titleApp.textContent = 'Book Lovers';
 
-  const startMail = document.createElement('input');
-  startMail.placeholder = 'Correo';
-  startMail.setAttribute('type', 'email');
-  startMail.classList = ('input');
+  const singInMail = document.createElement('input');
+  singInMail.placeholder = 'Correo';
+  singInMail.setAttribute('type', 'email');
+  singInMail.classList = ('input');
 
-  const startPassword = document.createElement('input');
-  startPassword.placeholder = 'Contraseña';
-  startPassword.setAttribute('type', 'password');
-  startPassword.classList = ('input');
+  const singInPassword = document.createElement('input');
+  singInPassword.placeholder = 'Contraseña';
+  singInPassword.setAttribute('type', 'password');
+  singInPassword.classList = ('input');
 
-  const startButton = document.createElement('button');
-  startButton.textContent = 'Sing In';
-  startButton.className = ('start');
-  startButton.addEventListener('click', () => {
-    onNavigate('/post');
+  const singInButton = document.createElement('button');
+  singInButton.textContent = 'Sing In';
+  singInButton.className = ('start');
+  singInButton.addEventListener('click', () => {
+    singInUser(singInMail.value, singInPassword.value).then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      console.log('si entra a las publicaciones', user);
+      // ...
+    })
+      .catch((error) => {
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
+        console.log('no funciono el metodo', error);
+      });
   });
 
   const textNewAccount = document.createElement('h5');
@@ -34,6 +46,6 @@ export const home = () => {
   buttonNewAccount.addEventListener('click', () => {
     onNavigate('/register');
   });
-  homeDiv.append(titleApp, startMail, startPassword, startButton, textNewAccount, buttonNewAccount);
+  homeDiv.append(titleApp, singInMail, singInPassword, singInButton, textNewAccount, buttonNewAccount);
   return homeDiv;
 };
