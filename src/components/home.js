@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from '../main.js';
 
@@ -27,6 +28,7 @@ export const home = () => {
     singInUser(singInMail.value, singInPassword.value).then((userCredential) => {
       // Signed in
       const user = userCredential.user;
+      onNavigate('/post');
       console.log('si entra a las publicaciones', user);
       // ...
     })
