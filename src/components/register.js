@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from '../main.js';
 
-import { createUser } from '../lib/auth.js';
+import { registerUser } from '../lib/auth.js';
 
 export const register = () => {
   const registerDiv = document.createElement('div');
@@ -20,11 +20,11 @@ export const register = () => {
   registerPassword.setAttribute('type', 'password');
   registerPassword.classList = ('input');
 
-  const buttonRegister = document.createElement('button');
-  buttonRegister.className = ('new');
-  buttonRegister.textContent = 'Register';
-  buttonRegister.addEventListener('click', () => {
-    createUser(registerMail.value, registerPassword.value).then((userCredential) => {
+  const registerButton = document.createElement('button');
+  registerButton.className = ('new');
+  registerButton.textContent = 'Register';
+  registerButton.addEventListener('click', () => {
+    registerUser(registerMail.value, registerPassword.value).then((userCredential) => {
       // Signed in
       const user = userCredential.user;
       console.log('ya se registró', user);
@@ -45,6 +45,6 @@ export const register = () => {
     onNavigate('/');
   });
 
-  registerDiv.append(homeRegister, registerMail, registerPassword, buttonRegister, buttonHome);
+  registerDiv.append(homeRegister, registerMail, registerPassword, registerButton, buttonHome);
   return registerDiv;
 };
