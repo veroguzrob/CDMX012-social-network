@@ -27,6 +27,7 @@ export const register = () => {
     registerUser(registerMail.value, registerPassword.value).then((userCredential) => {
       // Signed in
       const user = userCredential.user;
+      onNavigate('/');
       console.log('ya se registró', user);
       // ...
     })
@@ -38,13 +39,6 @@ export const register = () => {
       });
   });
 
-  const buttonHome = document.createElement('button');
-  buttonHome.className = ('start');
-  buttonHome.textContent = 'Return Home';
-  buttonHome.addEventListener('click', () => {
-    onNavigate('/');
-  });
-
-  registerDiv.append(homeRegister, registerMail, registerPassword, registerButton, buttonHome);
+  registerDiv.append(homeRegister, registerMail, registerPassword, registerButton);
   return registerDiv;
 };

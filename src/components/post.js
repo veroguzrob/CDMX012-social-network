@@ -1,5 +1,7 @@
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from '../main.js';
+import { singOutUser } from '../lib/auth.js';
+import { auth } from '../lib/firebaseConfig.js';
 
 export const postPage = () => {
   const postDiv = document.createElement('div');
@@ -32,7 +34,14 @@ export const postPage = () => {
   postClose.className = ('close');
   postClose.textContent = 'Close';
   postClose.addEventListener('click', () => {
-    onNavigate('/');
+    singOutUser().then(() => {
+      // Sign-out successful.
+      console.log('salio de la cuenta');
+      onNavigate('/');
+    }).catch((error) => {
+      // An error happened.
+      console.log(error);
+    });
   });
   postDiv.append(postTittle, postWrite, postDelete, postEdit, postPublic, postClose);
   return postDiv;
