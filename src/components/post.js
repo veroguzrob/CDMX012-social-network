@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from '../main.js';
 import { singOutUser } from '../lib/auth.js';
-import { auth } from '../lib/firebaseConfig.js';
+import { createPost } from '../lib/post.js';
 
 export const postPage = () => {
   const postDiv = document.createElement('div');
@@ -13,7 +13,6 @@ export const postPage = () => {
   const postWrite = document.createElement('input');
   postWrite.setAttribute('type', 'textarea');
   postWrite.setAttribute('maxlength', '200');
-  postWrite.setAttribute('cols', '30');
   postWrite.setAttribute('rows', '6');
   postWrite.placeholder = 'Write your post';
   postWrite.className = ('write');
@@ -21,14 +20,17 @@ export const postPage = () => {
   const postPublic = document.createElement('button');
   postPublic.className = ('edit');
   postPublic.textContent = 'Post';
+  postPublic.addEventListener('click', () => {
+    createPost(postWrite.value);
+  });
 
-  const postDelete = document.createElement('button');
+  /* const postDelete = document.createElement('button');
   postDelete.className = ('edit');
   postDelete.textContent = 'Delete';
 
   const postEdit = document.createElement('button');
   postEdit.className = ('edit');
-  postEdit.textContent = 'Edit';
+  postEdit.textContent = 'Edit'; */
 
   const postClose = document.createElement('button');
   postClose.className = ('close');
@@ -43,6 +45,6 @@ export const postPage = () => {
       console.log(error);
     });
   });
-  postDiv.append(postTittle, postWrite, postDelete, postEdit, postPublic, postClose);
+  postDiv.append(postTittle, postWrite, /* postDelete, postEdit, */ postPublic, postClose);
   return postDiv;
 };
