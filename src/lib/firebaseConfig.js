@@ -1,6 +1,7 @@
 /* eslint-disable import/no-unresolved */
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.7.0/firebase-app.js';
 import { getAuth } from 'https://www.gstatic.com/firebasejs/9.7.0/firebase-auth.js';
+import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.7.0/firebase-firestore.js';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBWmRVwu31CWbMSpT_4wJYCOZIfO0g5SnQ',
@@ -11,6 +12,11 @@ const firebaseConfig = {
   appId: '1:801993614327:web:30165cbeb97bad16d104f2',
 };
 
+// Initialize Firebase
 initializeApp(firebaseConfig);
 
+// Authentication
 export const auth = getAuth();
+
+// Initialize Cloud Firestore
+export const db = getFirestore();
