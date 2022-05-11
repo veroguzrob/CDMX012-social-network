@@ -4,34 +4,13 @@ import { singOutUser } from '../lib/auth.js';
 import { createPost } from '../lib/post.js';
 
 export const postPage = () => {
-  const postDiv = document.createElement('div');
-  postDiv.classList = ('container');
-
+  const postMain = document.createElement('main');
+  postMain.classList = ('container');
+  // Tittle
   const postTittle = document.createElement('h3');
   postTittle.textContent = 'Publications';
 
-  const postWrite = document.createElement('input');
-  postWrite.setAttribute('type', 'textarea');
-  postWrite.setAttribute('maxlength', '200');
-  postWrite.setAttribute('rows', '6');
-  postWrite.placeholder = 'Write your post';
-  postWrite.className = ('write');
-
-  const postPublic = document.createElement('button');
-  postPublic.className = ('edit');
-  postPublic.textContent = 'Post';
-  postPublic.addEventListener('click', () => {
-    createPost(postWrite.value);
-  });
-
-  /* const postDelete = document.createElement('button');
-  postDelete.className = ('edit');
-  postDelete.textContent = 'Delete';
-
-  const postEdit = document.createElement('button');
-  postEdit.className = ('edit');
-  postEdit.textContent = 'Edit'; */
-
+  // Close formPublications
   const postClose = document.createElement('button');
   postClose.className = ('close');
   postClose.textContent = 'Close';
@@ -45,6 +24,32 @@ export const postPage = () => {
       console.log(error);
     });
   });
-  postDiv.append(postTittle, postWrite, /* postDelete, postEdit, */ postPublic, postClose);
-  return postDiv;
+
+  // Write publication
+  const postWrite = document.createElement('input');
+  postWrite.setAttribute('type', 'textarea');
+  postWrite.setAttribute('rows', '6');
+  postWrite.placeholder = 'Write your post';
+  postWrite.className = ('write');
+  const postPublic = document.createElement('button');
+  postPublic.className = ('post');
+  postPublic.textContent = 'Post';
+  postPublic.addEventListener('click', () => {
+    createPost(postWrite.value).then(() => {
+      postWrite.value = '';
+    }).catch(() => {
+      console.log('no esta funcionando');
+    });
+  });
+
+  // Fetch Firestore Posts
+  const postDelete = document.createElement('button');
+  postDelete.className = ('edit');
+  postDelete.textContent = 'Delete';
+  const postEdit = document.createElement('button');
+  postEdit.className = ('edit');
+  postEdit.textContent = 'Edit';
+
+  postMain.append(postTittle, postClose, postWrite, postPublic, postDelete, postEdit);
+  return postMain;
 };

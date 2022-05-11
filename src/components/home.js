@@ -5,7 +5,7 @@ import { onNavigate } from '../main.js';
 import { singInUser } from '../lib/auth.js';
 
 export const home = () => {
-  const homeDiv = document.createElement('div');
+  const homeDiv = document.createElement('main');
   homeDiv.classList = ('container');
 
   const titleApp = document.createElement('h1');
