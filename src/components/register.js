@@ -4,7 +4,7 @@ import { onNavigate } from '../main.js';
 import { registerUser } from '../lib/auth.js';
 
 export const register = () => {
-  const registerDiv = document.createElement('div');
+  const registerDiv = document.createElement('main');
   registerDiv.classList = ('container');
 
   const homeRegister = document.createElement('h2');
