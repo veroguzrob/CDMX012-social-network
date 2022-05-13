@@ -3,6 +3,7 @@ body {
     margin: 0px;
     padding: 0px;
     background-color: #EFEFDE;
+
 }
 .container {
     font-family: Arial;
@@ -19,8 +20,6 @@ h1 {
     text-align: center;
     color: #BA5F2F;
     text-shadow: 4px 4px 4px #4A3B30;
-    
-    
 }
 h2 {
     text-align: center;
@@ -78,43 +77,14 @@ h5 {
     border: 1px solid #EC9A13;
     box-shadow: 0px 4px 4px 0px #00000080;
 }
-.write {
-    align-self: center;
+.goOut{
+    margin: auto;
     width: 300px;
-    height: 80px;
-    padding: 10px;
-    border: 1px solid #9AA240;
-    border-radius: 15px;
-    font-size: 15px;
-}
-.post {
-    align-self: flex-end;
-    width: 75px;
-    height: 25px;
-    margin: 5px 20px 20px 0;
-    border-radius: 10px;
-    font-size: 15px;
-    color: white;
-    font-weight: bold;
-    background-color: #EC9A13;
-    border: 1px solid #EC9A13;
-    box-shadow: 0px 4px 4px 0px #00000080;
-}
-.edit {
-    width: 75px;
-    height: 25px;
-    margin: 10px;
-    border-radius: 10px;
-    font-size: 15px;
-    color: white;
-    font-weight: bold;
-    background-color: #EC9A13;
-    border: 1px solid #EC9A13;
-    box-shadow: 0px 4px 4px 0px #00000080;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;    
 }
 .close {
-    align-self: flex-end;
-    position: absolute;
     width: 75px;
     height: 25px;
     margin: 20px;
@@ -124,5 +94,65 @@ h5 {
     background-color: #9AA240;
     border: 1px solid #9AA240;
     box-shadow: 0px 4px 4px 0px #00000080;
-
 }
+.publication{
+    margin: auto;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+.write {
+    align-self: center;
+    width: 300px;
+    height: 80px;
+    padding: 5px;
+    border: 1px solid #EC9A13;
+    border-radius: 15px;
+    font-size: 15px;
+    background-color: transparent;
+}
+.post {
+    align-self: flex-end;
+    width: 60px;
+    height: 20px;
+    margin: 5px 10px 10px 0;
+    border-radius: 08px;
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+    background-color: #EC9A13;
+    border: 1px solid #EC9A13;
+    box-shadow: 0px 4px 4px 0px #00000080;
+}
+.edition{
+    margin: auto;
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.edit {
+    width: 60px;
+    height: 20px;
+    margin: 5px 10px 10px 0;
+    border-radius: 08px;
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+    background-color: #EC9A13;
+    border: 1px solid #EC9A13;
+    box-shadow: 0px 4px 4px 0px #00000080;
+}
+.delete{
+    width: 60px;
+    height: 20px;
+    margin: 5px 0 10px 10px;
+    border-radius: 08px;
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+    background-color: #EC9A13;
+    border: 1px solid #EC9A13;
+    box-shadow: 0px 4px 4px 0px #00000080;
+}
+ 
