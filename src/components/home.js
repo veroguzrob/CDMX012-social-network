@@ -2,7 +2,7 @@
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from '../main.js';
 
-import { singInUser } from '../lib/auth.js';
+import { singInUser } from '../lib/authConfig.js';
 
 export const home = () => {
   const homeDiv = document.createElement('main');
