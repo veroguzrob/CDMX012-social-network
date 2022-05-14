@@ -103,7 +103,7 @@ h5 {
 }
 .write {
     align-self: center;
-    width: 300px;
+    width: 275px;
     height: 80px;
     padding: 5px;
     border: 1px solid #EC9A13;
@@ -141,7 +141,6 @@ h5 {
     flex-direction: column;
 }
 p {
-    align-self: center;
     margin: 0;
     padding: 10px;
     font-size: 15px;
