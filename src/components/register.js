@@ -28,13 +28,13 @@ export const register = () => {
       // Signed in
       const user = userCredential.user;
       onNavigate('/');
-      console.log('ya se registró', user);
+      // console.log('ya se registró', user);
       // ...
     })
-      .catch((error) => {
+      .catch(() => {
         // const errorCode = error.code;
         // const errorMessage = error.message;
-        console.log('No se registro nadie', error);
+        // console.log('No se registro nadie', error);
       // ..
       });
   });

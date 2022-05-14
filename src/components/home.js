@@ -29,13 +29,13 @@ export const home = () => {
       // Signed in
       const user = userCredential.user;
       onNavigate('/post');
-      console.log('si entra a las publicaciones', user);
+      // console.log('si entra a las publicaciones', user);
       // ...
     })
-      .catch((error) => {
+      .catch(() => {
       // const errorCode = error.code;
       // const errorMessage = error.message;
-        console.log('no funciono el metodo', error);
+        // console.log('no funciono el metodo', error);
       });
   });
 

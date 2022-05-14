@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from '../main.js';
 import { singOutUser } from '../lib/authConfig.js';
-import { createPost, getPost } from '../lib/postConfig.js';
+import { createPost, onGetPost, deletePost } from '../lib/postConfig.js';
 
 export const postPage = () => {
   const postMain = document.createElement('main');
@@ -19,11 +19,11 @@ export const postPage = () => {
   postClose.addEventListener('click', () => {
     singOutUser().then(() => {
       // Sign-out successful.
-      console.log('salio de la cuenta');
+      // console.log('salio de la cuenta');
       onNavigate('/');
-    }).catch((error) => {
+    }).catch(() => {
       // An error happened.
-      console.log(error);
+      // console.log(error);
     });
   });
   headPublication.append(postTittle, postClose);
@@ -42,40 +42,49 @@ export const postPage = () => {
     createPost(postWrite.value).then(() => {
       postWrite.value = '';
     }).catch(() => {
-      console.log('no esta funcionando');
+      // console.log('no esta funcionando');
     });
   });
   writePublication.append(postWrite, postPublic);
 
   // Fetch Firestore Posts
-  const editPublications = document.createElement('section');
-  editPublications.className = ('edition');
-  window.addEventListener('DOMContentLoaded', async () => {
-    const querySnapshot = await getPost();
+  const containerPublications = document.createElement('section');
+  containerPublications.className = ('edition');
+  onGetPost((querySnapshot) => {
+    containerPublications.innerHTML = '';
+
     querySnapshot.forEach((doc) => {
-      const listData = doc.data();
-      const textPost = listData.text;
-      const listPublications = document.createElement('div');
-      listPublications.className = ('divBox')
+      const postData = doc.data();
+      const textPost = postData.text;
+      const containerPost = document.createElement('div');
+      containerPost.className = ('divBox');
       const textPublication = document.createElement('p');
       textPublication.append(textPost);
 
       const postDelete = document.createElement('button');
       postDelete.className = ('delete');
       postDelete.textContent = 'Delete';
+      postDelete.id = doc.id;
 
       const postEdit = document.createElement('button');
       postEdit.className = ('edit');
       postEdit.textContent = 'Edit';
 
-      listPublications.append(textPublication, postDelete, postEdit);
+      containerPost.append(textPublication, postDelete, postEdit);
 
-      editPublications.append(listPublications);
+      const btnsDelete = containerPost.querySelectorAll('.delete');
+      btnsDelete.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          deletePost(e.target.id);
+        });
+      });
 
-      console.log(textPost);
+      containerPublications.append(containerPost);
+
+      // console.log(textPost);
     });
   });
 
-  postMain.append(headPublication, writePublication, editPublications);
+  postMain.append(headPublication, writePublication, containerPublications);
   return postMain;
 };
