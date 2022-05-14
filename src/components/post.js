@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from '../main.js';
-import { singOutUser } from '../lib/auth.js';
-import { createPost } from '../lib/post.js';
+import { singOutUser } from '../lib/authConfig.js';
+import { createPost, getPost } from '../lib/postConfig.js';
 
 export const postPage = () => {
   const postMain = document.createElement('main');
@@ -48,16 +48,34 @@ export const postPage = () => {
   writePublication.append(postWrite, postPublic);
 
   // Fetch Firestore Posts
-  const editPublication = document.createElement('section');
-  editPublication.className = ('edition');
-  const postDelete = document.createElement('button');
-  postDelete.className = ('delete');
-  postDelete.textContent = 'Delete';
-  const postEdit = document.createElement('button');
-  postEdit.className = ('edit');
-  postEdit.textContent = 'Edit';
-  editPublication.append(postDelete, postEdit);
+  const editPublications = document.createElement('section');
+  editPublications.className = ('edition');
+  window.addEventListener('DOMContentLoaded', async () => {
+    const querySnapshot = await getPost();
+    querySnapshot.forEach((doc) => {
+      const listData = doc.data();
+      const textPost = listData.text;
+      const listPublications = document.createElement('div');
+      listPublications.className = ('divBox')
+      const textPublication = document.createElement('p');
+      textPublication.append(textPost);
 
-  postMain.append(headPublication, writePublication, editPublication);
+      const postDelete = document.createElement('button');
+      postDelete.className = ('delete');
+      postDelete.textContent = 'Delete';
+
+      const postEdit = document.createElement('button');
+      postEdit.className = ('edit');
+      postEdit.textContent = 'Edit';
+
+      listPublications.append(textPublication, postDelete, postEdit);
+
+      editPublications.append(listPublications);
+
+      console.log(textPost);
+    });
+  });
+
+  postMain.append(headPublication, writePublication, editPublications);
   return postMain;
 };
