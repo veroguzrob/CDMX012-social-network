@@ -1,7 +1,9 @@
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from '../main.js';
 import { singOutUser } from '../lib/authConfig.js';
-import { createPost, onGetPost, deletePost } from '../lib/postConfig.js';
+import {
+  createPost, onGetPost, deletePost, getPost,
+} from '../lib/postConfig.js';
 
 export const postPage = () => {
   const postMain = document.createElement('main');
@@ -31,8 +33,7 @@ export const postPage = () => {
   // Write publication
   const writePublication = document.createElement('section');
   writePublication.className = ('publication');
-  const postWrite = document.createElement('input');
-  postWrite.setAttribute('type', 'textarea');
+  const postWrite = document.createElement('textarea');
   postWrite.placeholder = 'Write your post';
   postWrite.className = ('write');
   const postPublic = document.createElement('button');
@@ -69,6 +70,7 @@ export const postPage = () => {
       const postEdit = document.createElement('button');
       postEdit.className = ('edit');
       postEdit.textContent = 'Edit';
+      postEdit.id = doc.id;
 
       containerPost.append(textPublication, postDelete, postEdit);
 
@@ -76,6 +78,16 @@ export const postPage = () => {
       btnsDelete.forEach((btn) => {
         btn.addEventListener('click', (e) => {
           deletePost(e.target.id);
+        });
+      });
+
+      const btnsEdit = containerPost.querySelectorAll('.edit');
+      btnsEdit.forEach((btn) => {
+        btn.addEventListener('click', async (e) => {
+          const docPost = await getPost(e.target.id);
+          const editWrite = docPost.data();
+          postWrite.innerHTML = '';
+          postWrite.append(editWrite.text);
         });
       });
 
