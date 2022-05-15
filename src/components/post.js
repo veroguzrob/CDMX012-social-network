@@ -2,8 +2,11 @@
 import { onNavigate } from '../main.js';
 import { singOutUser } from '../lib/authConfig.js';
 import {
-  createPost, onGetPost, deletePost, getPost,
+  createPost, onGetPost, deletePost, getPost, updatePost,
 } from '../lib/postConfig.js';
+
+let editStatus = false;
+let id = '';
 
 export const postPage = () => {
   const postMain = document.createElement('main');
@@ -40,11 +43,17 @@ export const postPage = () => {
   postPublic.className = ('post');
   postPublic.textContent = 'Post';
   postPublic.addEventListener('click', () => {
-    createPost(postWrite.value).then(() => {
+    if (!editStatus) {
+      createPost(postWrite.value).then(() => {
+        postWrite.value = '';
+      }).catch(() => {
+        // console.log('no esta funcionando');
+      });
       postWrite.value = '';
-    }).catch(() => {
-      // console.log('no esta funcionando');
-    });
+    } else {
+      updatePost(id, { text: postWrite.value });
+      postWrite.value = '';
+    }
   });
   writePublication.append(postWrite, postPublic);
 
@@ -88,9 +97,13 @@ export const postPage = () => {
           const editWrite = docPost.data();
           postWrite.innerHTML = '';
           postWrite.append(editWrite.text);
+
+          editStatus = true;
+          id = doc.id;
+
+          postPublic.textContent = 'Update';
         });
       });
-
       containerPublications.append(containerPost);
 
       // console.log(textPost);
