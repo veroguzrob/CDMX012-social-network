@@ -148,7 +148,7 @@ p {
 .edit {
     width: 45px;
     height: 15px;
-    margin: 5px 10px 10px 0;
+    margin: 5px 10px 10px 85px;
     border-radius: 08px;
     font-size: 10px;
     color: white;
@@ -160,7 +160,7 @@ p {
 .delete{
     width: 45px;
     height: 15px;
-    margin: 5px 0 10px 10px;
+    margin: 5px 80px 10px 10px;
     border-radius: 08px;
     font-size: 10px;
     color: white;
