@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 // eslint-disable-next-line import/no-unresolved
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/9.7.0/firebase-auth.js';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/9.8.1/firebase-auth.js';
 
 import { auth } from './firebaseConfig.js';
 

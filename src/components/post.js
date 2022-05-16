@@ -49,10 +49,11 @@ export const postPage = () => {
       }).catch(() => {
         // console.log('no esta funcionando');
       });
-      postWrite.value = '';
     } else {
       updatePost(id, { text: postWrite.value });
       postWrite.value = '';
+      postPublic.textContent = 'Post';
+      editStatus = false;
     }
   });
   writePublication.append(postWrite, postPublic);
@@ -95,8 +96,7 @@ export const postPage = () => {
         btn.addEventListener('click', async (e) => {
           const docPost = await getPost(e.target.id);
           const editWrite = docPost.data();
-          postWrite.innerHTML = '';
-          postWrite.append(editWrite.text);
+          postWrite.value = editWrite.text;
 
           editStatus = true;
           id = doc.id;
