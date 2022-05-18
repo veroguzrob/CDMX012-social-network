@@ -3,10 +3,9 @@ body {
     margin: 0px;
     padding: 0px;
     background-color: #EFEFDE;
-
 }
 .container {
-    font-family: Arial;
+    font-family: sans-serif;
     display: flex;
     flex-direction: column;
 }
@@ -17,7 +16,6 @@ h1 {
     font-weight: 700;
     line-height: 75px;
     letter-spacing: 0em;
-    text-align: center;
     color: #BA5F2F;
     text-shadow: 4px 4px 4px #4A3B30;
 }

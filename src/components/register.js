@@ -24,9 +24,9 @@ export const register = () => {
   registerButton.className = ('new');
   registerButton.textContent = 'Register';
   registerButton.addEventListener('click', () => {
-    registerUser(registerMail.value, registerPassword.value).then((userCredential) => {
+    registerUser(registerMail.value, registerPassword.value).then(() => {
       // Signed in
-      const user = userCredential.user;
+      // const user = userCredential.user;
       onNavigate('/');
       // console.log('ya se registró', user);
       // ...
