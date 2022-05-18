@@ -1,12 +1,10 @@
 /* eslint-disable import/no-unresolved */
 import {
-  collection, addDoc, getDocs, onSnapshot, doc, deleteDoc, getDoc, updateDoc,
+  collection, addDoc, onSnapshot, doc, deleteDoc, getDoc, updateDoc,
 } from 'https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js';
 import { db } from './firebaseConfig.js';
 
 export const createPost = (text) => addDoc(collection(db, 'posts'), { text });
-
-export const getPosts = () => getDocs(collection(db, 'posts'));
 
 export const onGetPost = (callback) => onSnapshot(collection(db, 'posts'), callback);
 

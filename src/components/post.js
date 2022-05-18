@@ -9,6 +9,7 @@ let editStatus = false;
 let id = '';
 
 export const postPage = () => {
+  // console.log(auth);
   const postMain = document.createElement('main');
   postMain.classList = ('container');
 

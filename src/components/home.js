@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 // eslint-disable-next-line import/no-cycle
 import { onNavigate } from '../main.js';
-
 import { singInUser } from '../lib/authConfig.js';
 
 export const home = () => {
@@ -25,9 +24,11 @@ export const home = () => {
   singInButton.textContent = 'Sing In';
   singInButton.className = ('start');
   singInButton.addEventListener('click', () => {
-    singInUser(singInMail.value, singInPassword.value).then((userCredential) => {
+    singInUser(singInMail.value, singInPassword.value).then(() => {
       // Signed in
-      const user = userCredential.user;
+      // console.log('Hola');
+      // const user = userCredential.user;
+      // console.log(user);
       onNavigate('/post');
       // console.log('si entra a las publicaciones', user);
       // ...
